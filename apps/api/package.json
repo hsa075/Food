@@ -9,6 +9,9 @@
     "start": "node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
+    "contract:emit": "prisma contract emit",
+    "db:sign": "prisma db sign",
+    "db:verify": "prisma db verify",
     "db:seed": "tsx prisma/seed.ts",
     "test": "tsx --test tests/**/*.test.ts"
   },

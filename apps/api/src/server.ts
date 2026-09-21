@@ -13,7 +13,7 @@ async function startServer() {
     });
 
     console.log(`\n🍛 Uttara API server running at http://${config.host}:${config.port}`);
-    console.log(`📡 Healthcheck available at http://${config.host}:${config.port}/api/health\n`);
+    console.log(`📡 Healthcheck available at http://${config.host}:${config.port}/health\n`);
 
     const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
     for (const signal of signals) {

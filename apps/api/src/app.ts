@@ -33,8 +33,14 @@ export async function buildApp(): Promise<FastifyInstance> {
   // CORS configuration
   await app.register(cors, {
     origin: (origin, cb) => {
-      // Allow localhost frontend or any mobile app
-      cb(null, true);
+      if (!config.isProduction || !origin) {
+        return cb(null, true);
+      }
+      const allowedOrigins = config.corsOrigin.split(',').map((o) => o.trim());
+      if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+        return cb(null, true);
+      }
+      return cb(new Error('Not allowed by CORS'), false);
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -51,6 +57,12 @@ export async function buildApp(): Promise<FastifyInstance> {
   await setupAuth(app);
 
   // Health check
+  app.get('/health', async () => {
+    return {
+      status: 'ok',
+    };
+  });
+
   app.get('/api/health', async () => {
     return {
       status: 'ok',
