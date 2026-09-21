@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #9E472A;
+  --color-primary-dark: #853A21;
+  --color-secondary: #D9822B;
+  --color-background: #FAF7F2;
+  --color-surface: #F4EFEA;
+  --color-surface-hover: #EDE6DF;
+  --color-surface-border: #E7DFD5;
+  --color-text: #1C1917;
+  --color-text-muted: #57534E;
+  --color-accent-green: #4A6B53;
+  --color-accent-indigo: #3D4A5A;
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-kannada: 'Anek Kannada', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Authentic Kannada typography utility */
+.font-kannada {
+  font-family: var(--font-kannada);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle Ilkal geometric motif accent line */
+.ilkal-pattern-border {
+  background-image: linear-gradient(90deg, 
+    #9E472A 0%, #9E472A 25%, 
+    #D9822B 25%, #D9822B 50%, 
+    #1C1917 50%, #1C1917 75%, 
+    #4A6B53 75%, #4A6B53 100%
+  );
+  background-size: 32px 3px;
+  background-repeat: repeat-x;
+  height: 3px;
+}
+
+.subtle-grain {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(#1c191708 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+}
+
+/* Jowar Mandala Slow, Elegant Rotation */
+@keyframes jowar-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes jowar-spin-reverse-slow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes jowar-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: var(--tw-opacity, 1);
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: calc(var(--tw-opacity, 1) * 1.15);
+  }
+}
+
+.animate-jowar-spin {
+  animation: jowar-spin-slow 90s linear infinite;
+}
+
+.animate-jowar-spin-reverse {
+  animation: jowar-spin-reverse-slow 120s linear infinite;
+}
+
+.animate-jowar-breathe {
+  animation: jowar-breathe 6s ease-in-out infinite;
+}
+
+.animate-jowar-loader {
+  animation: jowar-spin-slow 14s linear infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
